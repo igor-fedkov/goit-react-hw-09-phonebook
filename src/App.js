@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from "react-transition-group";
 
@@ -27,7 +27,8 @@ function App() {
   
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
   const errorText = useSelector(globalDataSelectors.getErrorText);
-  const token = useState(authSelectors.getToken);
+  const token = useSelector(authSelectors.getToken);
+
 
   return (
     <Container>
