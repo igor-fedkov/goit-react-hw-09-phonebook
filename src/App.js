@@ -1,5 +1,5 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CSSTransition } from "react-transition-group";
 
@@ -27,6 +27,7 @@ function App() {
   
   const isAuthenticated = useSelector(authSelectors.getIsAuthenticated);
   const errorText = useSelector(globalDataSelectors.getErrorText);
+  const token = useState(authSelectors.getToken);
 
   return (
     <Container>
@@ -64,7 +65,7 @@ function App() {
           <PrivatRoute
             path={routes.contacts} exact
             component={PhoneBookView}
-            isAuthenticated={isAuthenticated}
+            isAuthenticated={token}
             redirectTo={routes.login}>
             <PhoneBookView />
           </PrivatRoute>

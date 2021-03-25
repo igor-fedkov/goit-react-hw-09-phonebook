@@ -38,7 +38,7 @@ function PhoneBookView() {
 	const onSubmitAddContact = useCallback(contact => {
 		const { name } = contact;
 
-		const isNameAlreadyExists = contacts.find(contact => contact.name === name);
+		const isNameAlreadyExists = contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase());
 		if (isNameAlreadyExists !== undefined) {
 			dispatch(globalDataActions.createErrorText('Такой контакт уже существует'));
 			return;
